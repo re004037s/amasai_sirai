@@ -1,0 +1,311 @@
+<html>
+ <head>
+         <meta charset="utf8">
+         <meta name="discription">
+         <h1>あなたの価値観に合う言葉を、以下のチェックボックスの中から13個選んでください。
+         </h1>
+        <BODY >
+            <style type="text/css">
+            div.changed {
+color: #000;
+}
+input[type=checkbox]:checked ~ div.changed {
+color: #ff0000;
+}
+/*FORM1*/
+
+/*まず、フォーム全体の囲み罫や背景などを指定*/
+form#form1 {
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	color: #666;
+	background: #F0F8F1;
+	/*↓背景グラデーションの指定*/
+	background: -moz-linear-gradient(top, #FBFCFC, #F0F8F1);
+	background: -webkit-linear-gradient(top, #FBFCFC, #F0F8F1);
+	background: linear-gradient(#FBFCFC, #F0F8F1);
+}
+
+/*リスト要素<ul>を初期化*/
+form#form1 ul {
+	padding:0;
+	margin:0
+}
+/*<li>も初期化し、ボーダーなどを指定*/
+form#form1 ul li {
+	list-style:none;
+	margin:0px;
+	padding:10px;
+	border-top: 2px solid #FFF;
+	font-size: 12px;
+}
+/*最初の<li>にはボーダーをつけない（:first-child疑似クラスによる指定）*/
+form#form1 ul li:first-child {
+	border-top:none;}
+
+
+/* span要素をブロック化しフロートでフォーム部品と横に並べる*/
+form#form1 ul li span {
+	width: 17em;
+	margin:0px;
+	display:block;
+	float:left;
+/* floatでなく、CSS3 の「display: inline-block」を使う手もアリ 
+	display: inline-block;*/
+}
+
+/*「:after」で <li>の末尾でフロートをクリア*/
+form#form1 ul li:after {
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+	clear:both;     /*←フロートをクリア*/
+	/*チェックボックス、ラジオボタンのブロックの指定*/
+form#form1 ul li p {
+	margin:5px 0 0 40px;
+}
+/*チェックボックス、ラジオボタンの label要素を横に並べる*/
+form#form1 ul li p label {
+	margin-right: 2em;
+	display: block;
+	float: left;
+}
+/*input要素とテキストがくっつかないように右にマージンを少し*/
+form#form1 ul li p label input {
+	margin-right:0.5em;
+}
+/*チェックボックス、ラジオボタンの label要素にロールオーバー時の変化を指定する*/
+form#form1 ul li p label:hover {
+	background : #FFF;
+	color: #096;
+	font-weight:bold;
+}
+/*チェックボックスの<label>の横幅を統一する（<p>にクラス名.checkをつけて）*/
+form#form1 ul li p.check label {
+	width: 9em;
+	
+}
+.check {
+	margin:			0 0 10px 20px;
+}
+/* ラベルのスタイル　*/
+.check label {
+	padding-left:		38px;			/* ラベルの位置 */
+	font-size:		32px;
+	line-height:		32px;
+	display:		inline-block;
+	cursor:			pointer;
+	position:		relative;
+}
+
+/* ボックスのスタイル */
+.check label:before {
+	content:		'';
+	width:			32px;			/* ボックスの横幅 */
+	height:			32px;			/* ボックスの縦幅 */
+	display:		inline-block;
+	position:		absolute;
+	left:			0;
+	background-color:	#fff;
+	box-shadow:		inset 1px 2px 3px 0px #000;
+	border-radius:		6px 6px 6px 6px;
+}
+/* 元のチェックボックスを表示しない */
+.check input[type=checkbox] {
+	display:		none;
+}
+/* チェックした時のスタイル */
+.check input[type=checkbox]:checked + label:before {
+	content:		'\2713';		/* チェックの文字 */ 
+	font-size:		34px;			/* チェックのサイズ */
+	color:			#fff;			/* チェックの色 */
+	background-color:	#06f;			/* チェックした時の色 */
+}
+            </style>
+            <SCRIPT language="JavaScript">
+//(1)指定したグループ名の値を合計する関数
+function sum_chk_value(gname){
+var r= document.getElementsByName(gname);
+var i;
+var sum=0;
+for (i=0; i<r.length; i++) {
+if (r[i].checked == true) {
+sum+=parseInt(r[i].value,10);
+}//endif
+}//next
+return (sum); 
+}//function
+
+//------------------------------------------
+//(2)クリックにて実行する関数
+function my_click(){
+    var a_sum=sum_chk_value("A");
+    var s_sum=sum_chk_value("S");
+    var m_sum=sum_chk_value("M");
+    var n_sum=sum_chk_value("N");
+    var total = parseInt(a_sum) + parseInt(s_sum) + parseInt(m_sum) + parseInt(n_sum);
+    if(total===13){
+        if(a_sum>=7){ //sが７個以上の時
+            location.href = "https://study-sirai.c9users.io/activetype.html";
+        }
+        if(s_sum>=7){//sが７個以上の時
+            location.href = "https://study-sirai.c9users.io/servicetype.html";
+        }
+        if(m_sum>=7){ //sが７個以上の時
+            location.href = "https://study-sirai.c9users.io/managetype.html";
+        }
+        if(n_sum>=7){ //sが７個以上の時
+            location.href = "https://study-sirai.c9users.io/innovatetype.html";
+        }
+                        
+        if(a_sum>s_sum && a_sum>m_sum && a_sum>n_sum && a_sum<7){//sがa,m,nより大きい時
+            location.href = "https://study-sirai.c9users.io/activetype.html";
+        }
+                        
+        if(s_sum>a_sum && s_sum>m_sum && s_sum>n_sum && s_sum<7){
+            location.href = "https://study-sirai.c9users.io/servicetype.html";
+        }
+        if(m_sum>a_sum && m_sum>s_sum && m_sum>n_sum && m_sum<7){//mが大きい時
+            location.href = "https://study-sirai.c9users.io/managetype.html";
+        }
+                        
+        if(n_sum>a_sum && n_sum>s_sum && n_sum>m_sum && n_sum<7){//nが大きい時
+            location.href = "https://study-sirai.c9users.io/innovatetype.html";
+        }
+                        
+        if(a_sum===s_sum && a_sum>=5 && s_sum>=5){//sとaが５以上で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/as_dousuu.html";
+        }
+                        
+        if(a_sum===m_sum && a_sum>=5 && m_sum>=5){//sとmが５以上で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/am_dousuu2.html";
+        }
+                        
+        if(a_sum===n_sum && a_sum>=5 && n_sum>=5){//sとnが５以上で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/an_dousuu2.html";
+        }
+                        
+        if(s_sum===m_sum && s_sum>=5 && m_sum>=5){//aとmが５以上で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/sm_dousuu2.html";
+        }
+                        
+        if(s_sum===n_sum && s_sum>=5 && n_sum>=5){//aとnが５以上で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/sn_dousuu2.html";
+        }
+                        
+        if(m_sum===n_sum && m_sum>=5 && n_sum>=5){//mとnが５以上で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/mn_dousuu2.html";
+        }
+        if(a_sum===4 && s_sum===4 && m_sum===4){//sとaとmが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/asm_dousuu2.html";
+        }
+        if(a_sum===4 && s_sum===4 && m_sum<4 && n_sum<4){//sとaとmが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/as_dousuu.html";
+        }
+        if(a_sum===4 && m_sum===4 && s_sum<4 && n_sum<4){//sとaとmが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/am_dousuu2.html";
+        }
+        if(a_sum===4 && n_sum===4 && s_sum<4 && m_sum<4){//sとaとmが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/an_dousuu2.html";
+        }
+         if(s_sum===4 && m_sum===4 && a_sum<4 && n_sum<4){//sとaとmが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/sm_dousuu2.html";
+        }
+         if(s_sum===4 && n_sum===4 && a_sum<4 && m_sum<4){//sとaとmが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/sn_dousuu2.html";
+        }
+         if(m_sum===4 && n_sum===4 && a_sum<4 && s_sum<4){//sとaとmが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/mn_dousuu2.html";
+        }
+        if(a_sum===4 && s_sum===4 && n_sum===4){//s,a,nが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/asn_dousuu2.html";
+        }
+        if(a_sum===4 && m_sum===4 && n_sum===4){//s,m,nが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/amn_dousuu2.html";
+        }
+        if(s_sum===4 && m_sum===4 && n_sum===4){//a,m,nが4で同数の時
+            alert("次のテストに移ります。");
+            location.href = "https://study-sirai.c9users.io/smn_dousuu2.html";
+        }
+    }else{
+        alert("13個選んでください");
+    }//endif
+}//function
+</SCRIPT>
+<form id="form1">
+<ul>
+<li>
+<p class="check">
+<label><INPUT type="checkbox" name="A" value="1">自由</label>
+<label><INPUT type="checkbox" name="A" value="1">柔軟性</label>
+<label><INPUT type="checkbox" name="A" value="1">即行</label>
+<label><INPUT type="checkbox" name="A" value="1">行動力</label>
+<label><INPUT type="checkbox" name="A" value="1">楽天性</label>
+<label><INPUT type="checkbox" name="A" value="1">興奮</label><BR>
+<label><INPUT type="checkbox" name="A" value="1">注目</label>
+<label><INPUT type="checkbox" name="A" value="1">刺激</label>
+<label><INPUT type="checkbox" name="A" value="1">競争</label>
+<label><INPUT type="checkbox" name="A" value="1">勝利</label>
+<label><INPUT type="checkbox" name="A" value="1">遊戯</label>
+<label><INPUT type="checkbox" name="A" value="1">想像</label><BR>
+<label><INPUT type="checkbox" name="S" value="1">人間関係</label>
+<label><INPUT type="checkbox" name="S" value="1">自分らしさ</label>
+<label><INPUT type="checkbox" name="S" value="1">自己成長</label>
+<label><INPUT type="checkbox" name="S" value="1">有意性</label>
+<label><INPUT type="checkbox" name="S" value="1">チームワーク</label>
+<label><INPUT type="checkbox" name="S" value="1">関与</label><BR>
+<label><INPUT type="checkbox" name="S" value="1">コミュニティ</label>
+<label><INPUT type="checkbox" name="S" value="1">チャリティ</label>
+<label><INPUT type="checkbox" name="S" value="1">論理</label>
+<label><INPUT type="checkbox" name="S" value="1">ハーモニー</label>
+<label><INPUT type="checkbox" name="S" value="1">モラル</label>
+<label><INPUT type="checkbox" name="S" value="1">貢献</label><BR>
+<label><INPUT type="checkbox" name="M" value="1">システム</label>
+<label><INPUT type="checkbox" name="M" value="1">安定</label>
+<label><INPUT type="checkbox" name="M" value="1">構造</label>
+<label><INPUT type="checkbox" name="M" value="1">計画</label>
+<label><INPUT type="checkbox" name="M" value="1">プロセス</label>
+<label><INPUT type="checkbox" name="M" value="1">予測</label><BR>
+<label><INPUT type="checkbox" name="M" value="1">責任</label>
+<label><INPUT type="checkbox" name="M" value="1">義務</label>
+<label><INPUT type="checkbox" name="M" value="1">ルール</label>
+<label><INPUT type="checkbox" name="M" value="1">証明</label>
+<label><INPUT type="checkbox" name="M" value="1">タイトル</label>
+<label><INPUT type="checkbox" name="M" value="1">伝統</label><BR>
+<label><INPUT type="checkbox" name="N" value="1">ロジック・理論</label>
+<label><INPUT type="checkbox" name="N" value="1">自己制御</label>
+<label><INPUT type="checkbox" name="N" value="1">テクノロジー</label>
+<label><INPUT type="checkbox" name="N" value="1">リサーチ</label>
+<label><INPUT type="checkbox" name="N" value="1">科学</label>
+<label><INPUT type="checkbox" name="N" value="1">普遍的真実</label><BR>
+<label><INPUT type="checkbox" name="N" value="1">専門性</label>
+<label><INPUT type="checkbox" name="N" value="1">能力・技量</label>
+<label><INPUT type="checkbox" name="N" value="1">正確</label>
+<label><INPUT type="checkbox" name="N" value="1">大局</label>
+<label><INPUT type="checkbox" name="N" value="1">知能</label>
+<label><INPUT type="checkbox" name="N" value="1">学習</label><BR>
+</p>
+</li>
+</ul>
+</form>
+</body>
+<input type="button" name="link" value="結果画面へ！" onclick="my_click()">
+</head>
+</html>
